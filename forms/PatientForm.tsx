@@ -5,12 +5,12 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form } from "@/components/ui/form";
-import CustomForm from "@/components/CustomForm";
 import SubmitButton from "@/components/SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
+import CustomFormField from "@/components/CustomForm";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -50,6 +50,8 @@ const PatientForm = () => {
     } catch (error) {
       console.error(error);
     }
+    setIsLoading(false);
+
   }
 
   return (
@@ -59,7 +61,7 @@ const PatientForm = () => {
           <h1 className="header">Hi there 👋</h1>
           <p className="text-dark-700">schedule your first appointment</p>
         </section>
-        <CustomForm
+        <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
           name="name"
@@ -68,7 +70,7 @@ const PatientForm = () => {
           iconSrc="assets/icons/user.svg"
           iconAlt="User icon"
         />
-        <CustomForm
+        <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
           name="email"
@@ -77,7 +79,7 @@ const PatientForm = () => {
           iconSrc="assets/icons/email.svg"
           iconAlt="Email icon"
         />
-        <CustomForm
+        <CustomFormField
           fieldType={FormFieldType.PHONE_INPUT}
           control={form.control}
           name="phone"
