@@ -1,12 +1,17 @@
+// import PassKeyModal from "@/components/PassKeyModal";
+import PassKeyModal from "@/components/PassKeyModal";
 import { Button } from "@/components/ui/button";
-import PatientForm from "@/forms/PatientForm";
+import PatientForm from "@/components/forms/PatientForm";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home({ searchParams }: SearchParamProps) {
+  const isAdmin = searchParams.admin === "true";
+
+  console.log({ isAdmin });
   return (
     <div className="flex h-screen max-h-screen">
-      {/* TODO: OTP Verification | PasskeyModal */}
+      {isAdmin && <PassKeyModal />}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[406px]">
           <Image
@@ -22,7 +27,7 @@ export default function Home() {
             <p className="justify-items-end text-dark-600 xl:text-left">
               © 2024 Care Pulse
             </p>
-            <Link href="/admin=true">
+            <Link href="/?admin=true">
               <span className="text-green-500">Admin</span>
             </Link>
           </div>

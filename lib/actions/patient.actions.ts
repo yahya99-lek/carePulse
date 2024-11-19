@@ -77,6 +77,7 @@ export const registerPatient = async ({
 
 export const getPatient = async (userId: string) => {
   try {
+    console.log(' process.env.PATIENT_COLLECTION_ID',  process.env.PATIENT_COLLECTION_ID);
     const patients = await databases.listDocuments(
       process.env.DATABASE_ID!,
       process.env.PATIENT_COLLECTION_ID!,
